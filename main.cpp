@@ -1,5 +1,6 @@
 #include <iostream>
-
+#include <iomanip>
+#include <cmath>
 using namespace std;
 
 //pass in space-delimited arguments when you call the executable
@@ -44,6 +45,74 @@ int main( int argc, char * argv[] )
 	yearly_interest_rate = arguments[1];
 	monthly_payment = arguments[2];
 	cout << loan_amount << " " << yearly_interest_rate << " " << monthly_payment << endl;
+
+	double balance = loan_amount;
+	double monthly_interest_rate = yearly_interest_rate/12;
+	double monthly_interest_paid = 0.0; //money toward interest per month
+	double monthly_princicle_paid = 0.0; //money remaining for principle
+	
+	double total_month = 0; // total month count
+	double total_interest_paid = 0.0; // total interest paid for the whole duration of the loan
+
+	const int col1 = 10;
+    const int col2 = 15;
+    const int col3 = 10;
+	const int col4 = 10;
+    const int col5 = 10;
+    const int col6 = 10;
+
+////////////////
+//Output the beginning of the program
+
+
+cout << "****************************************************************"<<endl;
+cout << "                       Amortization Table"<<endl;
+cout << "****************************************************************"<<endl;
+std::cout << std::left 
+            	<< std::setw(col1) << "Month" 
+              	<< std::setw(col2) << "Balance" 
+              	<< std::setw(col3) << "Payment"
+				<< std::setw(col4) << "Rate" 
+              	<< std::setw(col5) << "Interest" 
+              	<< std::setw(col6) << "Principal" << "\n";
+std::cout << std::left 
+            	<< std::setw(col1) << total_month 
+              	<< std::setw(col2) << balance 
+              	<< std::setw(col3) << "N/A"
+				<< std::setw(col4) << "N/A" 
+              	<< std::setw(col5) << "N/A" 
+              	<< std::setw(col6) << "N/A" << "\n";
+///////////////
+
+//check if monthly payment is enough to cover interest
+if ((loan_amount * (monthly_interest_rate/100.0)) > monthly_payment){
+	cout << "Generational Debt Type" << endl;
+	cout << "monthly interest would be " << (loan_amount * (monthly_interest_rate/100.0)) << endl;
+	return 0;
+}
+
+
+	while (balance > 0){
+		total_month++;
+		monthly_interest_paid = balance * monthly_interest_rate/100.0;
+		monthly_interest_paid = std::ceil(monthly_interest_paid * 100.0) / 100.0;
+		total_interest_paid += monthly_interest_paid;
+		monthly_princicle_paid = monthly_payment - monthly_interest_paid;
+		balance -= monthly_princicle_paid;
+
+		std::cout << std::left 
+            	<< std::setw(col1) << total_month 
+              	<< std::setw(col2) << balance
+              	<< std::setw(col3) << monthly_payment
+				<< std::setw(col4) << monthly_interest_rate
+              	<< std::setw(col5) << monthly_interest_paid
+              	<< std::setw(col6) << monthly_princicle_paid << "\n";
+		
+
+	}
+	
+
+
 
 	return 0;
 }
