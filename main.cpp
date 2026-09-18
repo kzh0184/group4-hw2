@@ -94,11 +94,19 @@ if ((loan_amount * (monthly_interest_rate/100.0)) > monthly_payment){
 
 	while (balance > 0){
 		total_month++;
-		monthly_interest_paid = balance * monthly_interest_rate/100.0;
-		monthly_interest_paid = std::ceil(monthly_interest_paid * 100.0) / 100.0;
+		// get monthly interest pay
+		monthly_interest_paid = balance * (monthly_interest_rate/100.0);
+		monthly_interest_paid = std::round(monthly_interest_paid * 100.0) / 100.0;
+
+		if ((balance + monthly_interest_paid) <= monthly_payment) {
+			monthly_payment = balance + monthly_interest_paid;
+		}
+
 		total_interest_paid += monthly_interest_paid;
 		monthly_princicle_paid = monthly_payment - monthly_interest_paid;
 		balance -= monthly_princicle_paid;
+
+		if (balance < 0){balance = 0.0;};
 
 		std::cout << std::left 
             	<< std::setw(col1) << total_month 
