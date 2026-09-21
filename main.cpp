@@ -125,6 +125,7 @@ std::cout << std::left
 			monthly_princicle_paid = current_payment - monthly_interest_paid;
 			balance -= monthly_princicle_paid;
 			
+
 			balance = std::round(balance * 100.0) / 100.0;
 			if (balance < 0){ balance = 0.0; }
 		}
