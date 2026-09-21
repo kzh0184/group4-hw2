@@ -76,6 +76,13 @@ int main( int argc, char * argv[] )
     const int col5 = 10;
     const int col6 = 10;
 
+	//check if monthly payment is enough to cover interest
+if ((loan_amount * (monthly_interest_rate/100.0)) > monthly_payment){
+	cout << "Generational Debt Type" << endl;
+	cout << "monthly interest would be " << (loan_amount * (monthly_interest_rate/100.0)) << endl;
+	return 0;
+}
+
 ////////////////
 //Output the beginning of the program
 
@@ -99,29 +106,30 @@ std::cout << std::left
               	<< std::setw(col6) << "N/A" << "\n";
 ///////////////
 
-//check if monthly payment is enough to cover interest
-if ((loan_amount * (monthly_interest_rate/100.0)) > monthly_payment){
-	cout << "Generational Debt Type" << endl;
-	cout << "monthly interest would be " << (loan_amount * (monthly_interest_rate/100.0)) << endl;
-	return 0;
-}
-
-
 	while (balance > 0){
 		total_month++;
 		// get monthly interest pay
-		monthly_interest_paid = balance * (monthly_interest_rate/100.0);
-		monthly_interest_paid = std::round(monthly_interest_paid * 100.0) / 100.0;
+		double raw_interest = balance * (monthly_interest_rate/100.0);
+		monthly_interest_paid = std::round(raw_interest * 100.0) / 100.0;
 
-		if ((balance + monthly_interest_paid) <= monthly_payment) {
-			monthly_payment = balance + monthly_interest_paid;
+
+		
+		double current_payment = monthly_payment;
+		if ((balance + monthly_interest_paid) <= current_payment) {
+			//Final month
+			current_payment = balance + monthly_interest_paid;
+			monthly_princicle_paid = balance; // Clamps principal perfectly to remaining balance
+			balance = 0.0;
+		} else {
+			//Regular case
+			monthly_princicle_paid = current_payment - monthly_interest_paid;
+			balance -= monthly_princicle_paid;
+			
+			balance = std::round(balance * 100.0) / 100.0;
+			if (balance < 0){ balance = 0.0; }
 		}
 
 		total_interest_paid += monthly_interest_paid;
-		monthly_princicle_paid = monthly_payment - monthly_interest_paid;
-		balance -= monthly_princicle_paid;
-
-		if (balance < 0){balance = 0.0;};
 
 		std::cout << std::left 
             	<< std::setw(col1) << total_month 
@@ -131,11 +139,6 @@ if ((loan_amount * (monthly_interest_rate/100.0)) > monthly_payment){
               	<< std::setw(2) << "$" << std::setw(col5) << monthly_interest_paid
               	<< std::setw(2) << "$" << std::setw(col6) << monthly_princicle_paid << "\n";
 		
-
 	}
-	
-
-
-
 	return 0;
 }
