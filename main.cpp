@@ -43,7 +43,6 @@ int main( int argc, char * argv[] )
 	if (argc ==1){
 		cout << "Loan Amount: ";
 		cin >> arguments[0];
-		cout << endl;
 
 		cout << "Interest Rate (% per year): ";
 		cin >> arguments[1];

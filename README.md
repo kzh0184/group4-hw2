@@ -1,3 +1,10 @@
+## 9/21/2026 1:18PM 
+# TO-DO List:
+- Add ending statement (total interest and month)
+- Fix the rounding error (+-.01 in terminal outputs)
+- Make sure script doesn't crash with invalid values (ex: entering characters as balance, negative inputs, etc)
+- More test cases
+
 # :wave: HomeWork 2
 
 ## 🤓 Assignment overview and learning outcomes 
