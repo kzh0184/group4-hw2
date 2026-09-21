@@ -40,10 +40,25 @@ int main( int argc, char * argv[] )
 			i++;
 		}
 	}
+	if (argc ==1){
+		cout << "Loan Amount: ";
+		cin >> arguments[0];
+		cout << endl;
 
+		cout << "Interest Rate (% per year): ";
+		cin >> arguments[1];
+
+		cout << "Monthly Payments: ";
+		cin >> arguments[2];
+	}
 	loan_amount = arguments[0];
 	yearly_interest_rate = arguments[1];
 	monthly_payment = arguments[2];
+
+	cout.setf(ios::fixed);
+	cout.setf(ios::showpoint);
+	cout.precision(2);
+
 	cout << loan_amount << " " << yearly_interest_rate << " " << monthly_payment << endl;
 
 	double balance = loan_amount;
@@ -110,11 +125,11 @@ if ((loan_amount * (monthly_interest_rate/100.0)) > monthly_payment){
 
 		std::cout << std::left 
             	<< std::setw(col1) << total_month 
-              	<< std::setw(col2) << balance
-              	<< std::setw(col3) << monthly_payment
+              	<< std::setw(2) << "$" << std::setw(col2) << balance
+              	<< std::setw(2) << "$" << std::setw(col3) << monthly_payment
 				<< std::setw(col4) << monthly_interest_rate
-              	<< std::setw(col5) << monthly_interest_paid
-              	<< std::setw(col6) << monthly_princicle_paid << "\n";
+              	<< std::setw(2) << "$" << std::setw(col5) << monthly_interest_paid
+              	<< std::setw(2) << "$" << std::setw(col6) << monthly_princicle_paid << "\n";
 		
 
 	}
