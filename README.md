@@ -1,4 +1,12 @@
 ## 9/21/2026 1:18PM 
+# Github workflow:
+- make codespace on repo
+- "git checkout -b branch_name" to make a branch
+- make code changes!
+- "git add ." and then "git commit -m "short descriptions of changes here"" to commit changes
+- "git push origin branch_name" to push to repo
+- then go to GitHub and do pull request and merge to main branch
+
 # TO-DO List:
 - Add ending statement (total interest and month)
 - Fix the rounding error (+-.01 in terminal outputs)
