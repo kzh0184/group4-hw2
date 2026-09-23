@@ -40,24 +40,29 @@ int main( int argc, char * argv[] )
 			i++;
 		}
 	}
-	if (argc ==1){
+	if (argc > 1 && argc < 5){
+		if (argc == 2 && arguments[0] < 0){cout << "(Invalid loan amount): " << endl; return 0;}
+		if (argc == 3 && arguments[1] < 0){cout << "(Invalid interest rate)" << endl; return 0;}
+		if (argc == 4 && arguments[2] < 0){cout << "(Invalid payment): " <<arguments[2] << endl; return 0;}
+	}
+	if (argc == 1){
 		cout << "Loan Amount: ";
 		cin >> arguments[0];
-		if (arguments[0] <= 0){
+		if (arguments[0] < 0){
 			cout << "Invalid Loan Amount. Values must be positive integers." << endl; 
     		return 0;
 		}
 
 		cout << "Interest Rate (% per year): ";
 		cin >> arguments[1];
-		if (arguments[1] <= 0){
+		if (arguments[1] < 0){
 			cout << "Invalid Interest Rate. Values must be positive integers." << endl; 
     		return 0;
 		}
 
 		cout << "Monthly Payments: ";
 		cin >> arguments[2];
-		if (arguments[2] <= 0){
+		if (arguments[2] < 0){
 			cout << "Invalid Payment. Values must be positive integers." << endl; 
     		return 0;
 		}
@@ -104,25 +109,24 @@ cout << "                       Amortization Table"<<endl;
 cout << "****************************************************************"<<endl;
 std::cout << std::left 
             	<< std::setw(col1) << "Month" 
-              	<< std::setw(col2) << "Balance" 
-              	<< std::setw(col3) << "Payment"
+              	<< std::setw(2) << " " << std::setw(col2) << "Balance" 
+              	<< std::setw(2) << " " << std::setw(col3) << "Payment"
 				<< std::setw(col4) << "Rate" 
-              	<< std::setw(col5) << "Interest" 
-              	<< std::setw(col6) << "Principal" << "\n";
+              	<< std::setw(2) << " " << std::setw(col5) << "Interest" 
+              	<< std::setw(2) << " " << std::setw(col6) << "Principal" << "\n";
 std::cout << std::left 
             	<< std::setw(col1) << total_month 
-              	<< std::setw(col2) << balance 
-              	<< std::setw(col3) << "N/A"
+              	<< std::setw(2) << "$" << std::setw(col2) << balance 
+              	<< std::setw(2) << " " << std::setw(col3) << "N/A"
 				<< std::setw(col4) << "N/A" 
-              	<< std::setw(col5) << "N/A" 
-              	<< std::setw(col6) << "N/A" << "\n";
+              	<< std::setw(2) << " " << std::setw(col5) << "N/A" 
+              	<< std::setw(2) << " " << std::setw(col6) << "N/A" << "\n";
 ///////////////
 
 	while (balance > 0){
 		total_month++;
 		// get monthly interest pay
-		double raw_interest = balance * (monthly_interest_rate/100.0);
-		monthly_interest_paid = std::round(raw_interest * 100.0) / 100.0;
+		monthly_interest_paid= balance * (monthly_interest_rate/100.0);
 
 
 		
@@ -138,7 +142,6 @@ std::cout << std::left
 			balance -= monthly_princicle_paid;
 			
 
-			balance = std::round(balance * 100.0) / 100.0;
 			if (balance < 0){ balance = 0.0; }
 		}
 
@@ -153,7 +156,8 @@ std::cout << std::left
               	<< std::setw(2) << "$" << std::setw(col6) << monthly_princicle_paid << "\n";
 		
 	}
-
+	cout << "*****************************************************************************" << endl;
+	cout << endl;
 	cout << "It takes " << total_month << " months to pay off the loan." << endl;
 	cout << "Total interest paid is: $" << total_interest_paid << endl;
 
