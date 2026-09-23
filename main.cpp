@@ -53,7 +53,9 @@ int main( int argc, char * argv[] )
 	loan_amount = arguments[0];
 	yearly_interest_rate = arguments[1];
 	monthly_payment = arguments[2];
-
+/////////////
+//Check for invalid values here (make sure int and positive)
+/////////////
 	cout.setf(ios::fixed);
 	cout.setf(ios::showpoint);
 	cout.precision(2);
