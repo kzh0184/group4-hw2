@@ -57,6 +57,7 @@ int main( int argc, char * argv[] )
 //Check for invalid values here (make sure int and positive)
 //
 //if there is an unexpected value, cout a message and return 0
+//should only be an if statement
 ////////////
 	cout.setf(ios::fixed);
 	cout.setf(ios::showpoint);
