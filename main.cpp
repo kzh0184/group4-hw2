@@ -43,6 +43,7 @@ int main( int argc, char * argv[] )
 	if (argc ==1){
 		cout << "Loan Amount: ";
 		cin >> arguments[0];
+		if (arguments[0])
 
 		cout << "Interest Rate (% per year): ";
 		cin >> arguments[1];
@@ -82,7 +83,7 @@ int main( int argc, char * argv[] )
     const int col6 = 10;
 
 	//check if monthly payment is enough to cover interest
-	if ((loan_amount * (monthly_interest_rate/100.0)) > monthly_payment){
+	if ((loan_amount * (monthly_interest_rate/100.0)) >= monthly_payment){
 		cout << "Generational Debt Type" << endl;
 		cout << "Monthly interest would be $" << (loan_amount * (monthly_interest_rate/100.0)) << " and wouldn't be enough for your $"<< monthly_payment <<" monthly payment to cover!" << endl;
 		return 0;
