@@ -43,22 +43,29 @@ int main( int argc, char * argv[] )
 	if (argc ==1){
 		cout << "Loan Amount: ";
 		cin >> arguments[0];
+		if (arguments[0] <= 0){
+			cout << "Invalid Loan Amount. Values must be positive integers." << endl; 
+    		return 0;
+		}
 
 		cout << "Interest Rate (% per year): ";
 		cin >> arguments[1];
+		if (arguments[1] <= 0){
+			cout << "Invalid Interest Rate. Values must be positive integers." << endl; 
+    		return 0;
+		}
 
 		cout << "Monthly Payments: ";
 		cin >> arguments[2];
+		if (arguments[2] <= 0){
+			cout << "Invalid Payment. Values must be positive integers." << endl; 
+    		return 0;
+		}
 	}
 	loan_amount = arguments[0];
 	yearly_interest_rate = arguments[1];
 	monthly_payment = arguments[2];
-/////////////
-//Check for invalid values here (make sure int and positive)
-//
-//if there is an unexpected value, cout a message and return 0
-//should only be an if statement
-////////////
+
 	cout.setf(ios::fixed);
 	cout.setf(ios::showpoint);
 	cout.precision(2);
@@ -70,7 +77,7 @@ int main( int argc, char * argv[] )
 	double monthly_interest_rate = yearly_interest_rate/12;
 	double monthly_interest_paid = 0.0; //money toward interest per month
 	double monthly_princicle_paid = 0.0; //money remaining for principle
-	double total_month = 0; // total month count
+	int total_month = 0; // total month count
 	double total_interest_paid = 0.0; // total interest paid for the whole duration of the loan
 
 	///set widths for the column outputs
@@ -140,11 +147,15 @@ std::cout << std::left
 		std::cout << std::left 
             	<< std::setw(col1) << total_month 
               	<< std::setw(2) << "$" << std::setw(col2) << balance
-              	<< std::setw(2) << "$" << std::setw(col3) << monthly_payment
+              	<< std::setw(2) << "$" << std::setw(col3) << current_payment
 				<< std::setw(col4) << monthly_interest_rate
               	<< std::setw(2) << "$" << std::setw(col5) << monthly_interest_paid
               	<< std::setw(2) << "$" << std::setw(col6) << monthly_princicle_paid << "\n";
 		
 	}
+
+	cout << "It takes " << total_month << " months to pay off the loan." << endl;
+	cout << "Total interest paid is: $" << total_interest_paid << endl;
+
 	return 0;
 }
