@@ -55,7 +55,9 @@ int main( int argc, char * argv[] )
 	monthly_payment = arguments[2];
 /////////////
 //Check for invalid values here (make sure int and positive)
-/////////////
+//
+//if there is an unexpected value, cout a message and return 0
+////////////
 	cout.setf(ios::fixed);
 	cout.setf(ios::showpoint);
 	cout.precision(2);
