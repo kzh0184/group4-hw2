@@ -65,14 +65,15 @@ int main( int argc, char * argv[] )
 
 	cout << loan_amount << " " << yearly_interest_rate << " " << monthly_payment << endl;
 
+	///some variables
 	double balance = loan_amount;
 	double monthly_interest_rate = yearly_interest_rate/12;
 	double monthly_interest_paid = 0.0; //money toward interest per month
 	double monthly_princicle_paid = 0.0; //money remaining for principle
-	
 	double total_month = 0; // total month count
 	double total_interest_paid = 0.0; // total interest paid for the whole duration of the loan
 
+	///set widths for the column outputs
 	const int col1 = 10;
     const int col2 = 15;
     const int col3 = 10;
@@ -81,11 +82,11 @@ int main( int argc, char * argv[] )
     const int col6 = 10;
 
 	//check if monthly payment is enough to cover interest
-if ((loan_amount * (monthly_interest_rate/100.0)) > monthly_payment){
-	cout << "Generational Debt Type" << endl;
-	cout << "monthly interest would be " << (loan_amount * (monthly_interest_rate/100.0)) << endl;
-	return 0;
-}
+	if ((loan_amount * (monthly_interest_rate/100.0)) > monthly_payment){
+		cout << "Generational Debt Type" << endl;
+		cout << "Monthly interest would be $" << (loan_amount * (monthly_interest_rate/100.0)) << " and wouldn't be enough for your $"<< monthly_payment <<" monthly payment to cover!" << endl;
+		return 0;
+	}
 
 ////////////////
 //Output the beginning of the program
