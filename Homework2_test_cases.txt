@@ -20,6 +20,6 @@
 	+ Test case 14 (Invalid payment):	1000 18 abc
 
 	=> more custom test cases?
-
+	+ Test case 15 (Insufficient payment):	1000 18 15
 
 
